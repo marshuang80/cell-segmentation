@@ -9,12 +9,15 @@ import metrics
 from skimage import io
 from skimage import transform
 from model import FusionNet, DilationCNN, UNet
-from dataset import NucleiDataset
+from dataset import NucleiDataset, get_augmenter
 from torch.utils.data import DataLoader
 from loss import dice_loss
 import imageio
+import torchvision
 import glob
 import os
+import PIL
+from imgaug import augmenters as iaa
 
 
 def main(args):
@@ -22,9 +25,11 @@ def main(args):
     # tensorboard
     logger_tb = logger.Logger(log_dir=args.experiment_name)
 
+    #augmenter = get_augmenter(args)
+
     # train dataloader and val dataset
-    train_dataset = NucleiDataset(args.train_data, 'train')
-    val_dataset = NucleiDataset(args.val_data, 'val')
+    train_dataset = NucleiDataset(args.train_data, 'train', transform=True)
+    val_dataset = NucleiDataset(args.val_data, 'val', transform=True)
 
     train_params = {'batch_size': args.batch_size,
                     'shuffle': False,
@@ -89,12 +94,10 @@ def main(args):
                     total_loss.append(loss.item()) 
 
                     # calculate IoU precision
-
                     predictions = pred.clone().squeeze().detach().cpu().numpy()
                     gt = y.clone().squeeze().detach().cpu().numpy()
                     ious = [metrics.get_ious(p, g, 0.5) for p,g in zip(predictions, gt)]
                     total_iou.append(np.mean(ious))
-
 
                     # back prop
                     optimizer.zero_grad()
@@ -143,7 +146,7 @@ def main(args):
                 total_precision.append(precision)
 
                 # display segmentation on tensorboard 
-                if idx == 0:
+                if idx == 1:
                     original = x_val
                     truth = np.expand_dims(y_val,axis=0)
                     seg = pred.cpu().squeeze().detach().numpy()
@@ -153,7 +156,6 @@ def main(args):
                     logger_tb.update_image("ground truth", truth, 0)
                     logger_tb.update_image("segmentation", seg, epoch)
               
-
         # log metrics
         logger_tb.update_value('val loss', np.mean(total_loss), epoch)
         logger_tb.update_value('val iou', np.mean(total_iou), epoch)
@@ -188,6 +190,18 @@ if __name__ == "__main__":
     parser.add_argument('--gpu_ids', type=str, default='0')
     parser.add_argument('--num_workers', type=int, default='16')
     parser.add_argument('--experiment_name', type=str, default='test')
+
+    # agumentations
+    def boolean_string(s):
+        if s not in {'False', 'True'}:
+            raise ValueError('Not a valid boolean string')
+        return s == 'True'
+
+    parser.add_argument('--vflip', type=boolean_string, default="False")
+    parser.add_argument('--hflip', type=boolean_string, default="False")
+    parser.add_argument('--zoom', type=boolean_string, default="False")
+    parser.add_argument('--rotate', type=boolean_string, default="False")
+
     args = parser.parse_args()
 
     main(args)

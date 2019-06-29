@@ -2,14 +2,18 @@ python train.py --num_kernel 8 \
                 --kernel_size 3\
 		        --lr 1e-3 \
 		        --epoch 200\
-			    --train_data  path_to_training_dataset \
-			    --val_data path_to_validation_dataset \
+			    --train_data  /home/mars/data/Nuclei/train.hdf5 \
+			    --val_data /home/mars/data/Nuclei/val.hdf5 \
 			    --save_dir ./ \
                 --device cuda\
                 --optimizer adam\
                 --model unet\
                 --shuffle False \
                 --num_workers 16 \
+                --vflip False \
+                --hflip False \
+                --zoom True \
+                --rotate False \
                 --batch_size 64 \
                 --gpu_ids 0,1,2,3\
-                --experiment_name test
+                --experiment_name unet_k8_s3_adam_1e-3_200_transform
