@@ -40,9 +40,9 @@ def compute_precision(pred, gt, threshold=0.5):
 
     Parameters
     ----------
-        pred: 
+        pred:
             predictions from the model
-        gt: 
+        gt:
             ground truth labels
         threshold:
             threshold used to seperate binary labels
@@ -56,12 +56,10 @@ def compute_precision(pred, gt, threshold=0.5):
     labeled, ncomponents = label(pred, structure)
 
     pred_masks = []
-    for l in range(ncomponents):
+    for l in range(1,ncomponents):
         pred_mask = np.zeros(labeled.shape)
-        pred_mask[labeled == 1] = 1 
+        pred_mask[labeled == l] = 1
         pred_masks.append(pred_mask)
-
-    pred_masks = np.array(pred_masks)
 
     iou_vol = np.zeros([10, len(pred_masks), len(gt)])
 
@@ -72,9 +70,11 @@ def compute_precision(pred, gt, threshold=0.5):
 
     p = []
     for iou_mat in iou_vol:
+        print(iou_mat[5:,5:])
         tp = np.sum(iou_mat.sum(axis=1) > 0)
         fp = np.sum(iou_mat.sum(axis=1) == 0)
         fn = np.sum(iou_mat.sum(axis=0) == 0)
+        print(tp, fp, fn)
         p.append(tp / (tp + fp + fn))
 
     return np.mean(p)
@@ -90,7 +90,6 @@ def get_iou_vector(pred, gt):
         gt: 
             ground truth labels
     """
-
     intersection = np.logical_and(pred, gt)
     union = np.logical_or(pred, gt)
 
@@ -100,7 +99,7 @@ def get_iou_vector(pred, gt):
     if union == 0:
         union = 1e-09
 
-    iou = np.sum(intersection) / np.sum(union)
+    iou = np.sum(intersection > 0) / np.sum(union > 0)
     s = []
     for thresh in np.arange(0.5,1,0.05):
         s.append(1 if iou > thresh else 0)
