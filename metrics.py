@@ -70,11 +70,9 @@ def compute_precision(pred, gt, threshold=0.5):
 
     p = []
     for iou_mat in iou_vol:
-        print(iou_mat[5:,5:])
         tp = np.sum(iou_mat.sum(axis=1) > 0)
         fp = np.sum(iou_mat.sum(axis=1) == 0)
         fn = np.sum(iou_mat.sum(axis=0) == 0)
-        print(tp, fp, fn)
         p.append(tp / (tp + fp + fn))
 
     return np.mean(p)
