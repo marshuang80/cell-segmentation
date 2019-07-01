@@ -21,5 +21,5 @@ def dice_loss(pred, target):
     a_sum = torch.sum(p_flat * p_flat)                                     
     b_sum = torch.sum(t_flat * t_flat)                                     
                                                                          
-    return 1 - ((2. * intersection + smooth) / (a_sum + a_sum + smooth) )
+    return 1 - ((2. * intersection + smooth) / (a_sum + b_sum + smooth) )
 
