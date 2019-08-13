@@ -9,7 +9,7 @@ import random
 
 class HPADataset(Dataset):
 
-    def __init__(self, data_path, phase='train', transform=False):
+    def __init__(self, data_path, phase='train', transform=False, max_mean="max", target_channels="3"):
         """Custom PyTorch Dataset for hpa dataset
 
         Parameters
@@ -23,6 +23,15 @@ class HPADataset(Dataset):
         self.data_path = data_path
         self.phase = phase
         self.transform = transform
+        self.max_mean = max_mean
+
+        if "," in target_channels:
+            self.target_channels = [int(c) for c in target_channels.split(',')]
+        else:
+            self.target_channels = [int(target_channels)]
+
+        self.target_dim = len(self.target_channels)
+
 
         with h5py.File(self.data_path,"r") as h:
             self.data_names = list(h['/raw']['train'].keys())
@@ -43,16 +52,14 @@ class HPADataset(Dataset):
         data = np.transpose(data, (2,0,1))
         data = data / 255.
         
-        y = data[2]    # get blue nuclei channel
-        y[y > 0.5] = 1.0    # try out different thresholds 
-        y = np.expand_dims(y, 0)
+        y = data[self.target_channels].copy()
 
-        x = np.mean(data, axis=0)
+        y = np.expand_dims(y, 0)
+        
+        if self.max_mean == "max":
+            x = np.max(data, axis=0)
+        else:
+            x = np.mean(data, axis=0)
         x = np.expand_dims(x, 0)
-       
-        if self.transform:
-            
-            y = np.expand_dims(y, axis=0).astype(int)
-            x, y = self.augmentation(x, y)
         
         return x, y
