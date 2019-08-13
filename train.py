@@ -121,6 +121,7 @@ def main(args):
                     original = x_train[0].squeeze()
                     truth = y_train[0].squeeze()
                     seg = pred[0].cpu().squeeze().detach().numpy()
+
                     # TODO display segmentations based on number of ouput
                     print(seg.shape)
                     logger_tb.update_image("truth", truth, count)
