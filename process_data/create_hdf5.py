@@ -38,11 +38,10 @@ def main(args):
 
             # stack x and y together
             y = np.expand_dims(y, axis=0)
-            data = np.vstack((x,y,maks))
+            data = np.vstack((x,y,masks))
 
             hdf5_fn.create_dataset(str(data_name), data=data, dtype=np.float, chunks=True)
             progress_bar.update(1)
-
     hdf5_fn.close()
 
 
@@ -61,9 +60,9 @@ def parse_data(path):
 
     # TODO only using majority shape
     if x.shape != (256, 256, 4):
-        return None, None
-    masks = [imageio.imread(y) for y in y_files]
-    y = np.zeros_like(y_masks[0])
+        return None, None, None
+    masks = np.array([imageio.imread(y) for y in y_files])
+    y = np.zeros_like(masks[0])
     for y_raw in masks:
         y = np.maximum(y, y_raw)
 
