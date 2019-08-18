@@ -1,17 +1,18 @@
-python train.py --num_kernel 32 \
+python train.py --num_kernel 8 \
                 --kernel_size 3\
 		        --lr 1e-3 \
-		        --epoch 2\
+		        --epoch 2 \
 			    --train_data  /home/mars/data/hpa/rgby/train/data.hdf5 \
 			    --save_dir ./ \
-                --dataset HPA
+                --dataset HPA \
                 --device cuda\
                 --optimizer adam\
                 --model unet\
                 --shuffle False \
                 --max_mean max \
-                --target_channel 0,2,3 \
+                --target_channels '2' \
                 --num_workers 32 \
                 --batch_size 8 \
                 --gpu_ids 0\
-                --experiment_name hpa_3c_32_mean
+                --transform True\
+                --experiment_name hpa_1c_max_16

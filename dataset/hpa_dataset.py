@@ -1,5 +1,6 @@
 from torch.utils.data import Dataset
 from scipy import ndimage
+from .augmentation import augmentation
 import skimage
 import imageio
 import numpy as np
@@ -61,5 +62,8 @@ class HPADataset(Dataset):
         else:
             x = np.mean(data, axis=0)
         x = np.expand_dims(x, 0)
+
+        if self.transform: 
+            x,y = augmentation(x,y)
         
         return x, y

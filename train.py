@@ -123,7 +123,6 @@ def main(args):
                     seg = pred[0].cpu().squeeze().detach().numpy()
 
                     # TODO display segmentations based on number of ouput
-                    print(seg.shape)
                     logger_tb.update_image("truth", truth, count)
                     logger_tb.update_image("segmentation", seg, count)
                     logger_tb.update_image("original", original, count)
@@ -135,9 +134,10 @@ def main(args):
     ckpt_dict = {'model_name': model.__class__.__name__, 
                  'model_args': model.args_dict(), 
                  'model_state': model.to('cpu').state_dict()}
-    experiment_name = f"{args.dataset}_{train_dataset.target_dim}c_{args.num_kernel}"
+    experiment_name = f"{model.__class__.__name__}_{args.dataset}_{train_dataset.target_dim}c"
     if args.dataset == "HPA":
         experiment_name += f"_{args.max_mean}"
+    experiment_name += f"_{args.num_kernel}"
     ckpt_path = os.path.join(args.save_dir, f"{experiment_name}.pth")
     torch.save(ckpt_dict, ckpt_path)
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     parser.add_argument('--epoch', type=int, default=10)
     parser.add_argument('--train_data', type=str, default="/home/mars/CZI/data/train.hdf5")
     parser.add_argument('--save_dir', type=str, default="./")
-    parser.add_argument('--dataset', type=str, default="HPA")
+    parser.add_argument('--dataset', type=str, default="Hpa")
     parser.add_argument('--device', type=str, default="cuda")
     parser.add_argument('--optimizer', type=str, default='adam')
     parser.add_argument('--model', type=str, default='unet')
