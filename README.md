@@ -10,9 +10,11 @@ PyTorch implementation of several neural network segmentaion models (UNet, Fusio
 
 The following datasets were used to train and test the different cell segmentatoin models:
 
-[Nuclei Dataset](https://www.kaggle.com/c/data-science-bowl-2018/overview)
-[HPA Dataset](https://www.kaggle.com/c/human-protein-atlas-image-classification)
-[Nuero Dataset](http://neurofinder.codeneuro.org/)
+- [Nuclei Dataset](https://www.kaggle.com/c/data-science-bowl-2018/overview)
+
+- [HPA Dataset](https://www.kaggle.com/c/human-protein-atlas-image-classification)
+
+- [Nuero Dataset](http://neurofinder.codeneuro.org/)
 
 
 ## Process Data
@@ -21,5 +23,12 @@ After downloading the dataset from the links above, each dataset can be parsed a
 
 ```python ./process_data/hpa_create_hdf5.py --input_dir PATH_TO_DATA --output_dir PATH_TO_OUTPUT```
 
+
+## Segmentation Models:
+This repository included several simple segmentation networks, including:
+
+- [UNet](https://arxiv.org/abs/1505.04597)
+- [FusionNet](https://arxiv.org/pdf/1612.05360.pdf)
+- [Dialated Convolution](https://arxiv.org/abs/1511.07122)
 
 
