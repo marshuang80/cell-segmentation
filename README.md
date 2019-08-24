@@ -68,3 +68,12 @@ The segmentation models can also be used to restore missing pixels in an image:
 
 The above missing pixels restoration model can be trained by running *train.py* and set the dataset argument to **hpa_single**. 
 
+
+## Train Model 
+
+To train any models, run the *train.py* with the desired configurations. Example configurations for each training modes can be found in the *train_\*.sh* files. The output trained model will be based on the **experiment_name** parameter. 
+
+
+### Tensorboard 
+
+You can visualize the trianing loss and IoU during training, as well as the segmentation images, using Tensorboard. While the model is training, run ```tensorboard --logdir=logs --port=1234``` and your Tensorboard can be opened in your browser with the link **http://localhost:1234**
