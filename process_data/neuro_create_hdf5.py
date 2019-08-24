@@ -13,7 +13,7 @@ def main(args):
 
     #for name in file_names:
     for name in file_names:
-        hdf5 = h5py.File((args.output_file), "a")
+        hdf5 = h5py.File((os.path.join(args.output_dir, "data.hdf5"), "a")
 
         file_path = f"./train/image_{name}.tif"
         mask_path = f"./train/mask_{name}.tif"
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--input_dir", type=str)
-    parser.add_argument("--output_file", type=str)
+    parser.add_argument("--output_dir", type=str)
 
     args = parser.parse_args()
 
