@@ -46,21 +46,17 @@ def process(id_lists, output_dir):
     hdf5_fn.close()
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input_dir', dest='input_dir',
-                        help='the directory of the input images',
-                        default=None, type=str)
-    parser.add_argument('--output_dir', dest='output_dir',
-                        help='the directory of the output images',
-                        default=None, type=str)
-    args = parser.parse_args()
+def main(args):
 
     os.makedirs(args.output_dir, exist_ok=True)
-
     id_lists = load_ids(args.input_dir)
     process(id_lists, args.output_dir)
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input_dir', dest='input_dir', default=None, type=str)
+    parser.add_argument('--output_dir', dest='output_dir', default=None, type=str)
+    args = parser.parse_args()
+
+    main(args)
