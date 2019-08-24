@@ -42,7 +42,7 @@ The same segmentation models can be trained for a wide range of tasks. These dif
 As expected, these segmentation models can be used for simple segmentation tasks such as segmenting out the Cell's nuclei:
 
 | Dataset | Original | Segmentation |
-| --- | --- | --- |
+| --- | :---: | :---: |
 | Neuro | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_original.png" width="40%"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_segmentation.png" width="40%"> |
 | Nuclei | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_original.png" width="40%"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_segmentation.png" width="40%"> | 
 
