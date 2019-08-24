@@ -150,7 +150,7 @@ if __name__ == "__main__":
     parser.add_argument('--kernel_size', type=int, default=3)
     parser.add_argument('--lr', type=float, default=0.1)
     parser.add_argument('--epoch', type=int, default=10)
-    parser.add_argument('--train_data', type=str, default="/home/mars/CZI/data/train.hdf5")
+    parser.add_argument('--train_data', type=str, default="PATH_TO_TRAIN_DATA")
     parser.add_argument('--save_dir', type=str, default="./")
     parser.add_argument('--dataset', type=str, default="Hpa")
     parser.add_argument('--device', type=str, default="cuda")
