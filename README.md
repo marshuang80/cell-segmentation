@@ -23,6 +23,8 @@ After downloading the dataset from the links above, each dataset can be parsed a
 
 ```python ./process_data/hpa_create_hdf5.py --input_dir PATH_TO_DATA --output_dir PATH_TO_OUTPUT```
 
+Example script can be found at *./process_data/create_hdf5.sh*
+
 
 ## Segmentation Models:
 This repository included several simple segmentation networks, including:
