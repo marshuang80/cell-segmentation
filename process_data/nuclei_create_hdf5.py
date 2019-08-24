@@ -20,7 +20,7 @@ def main(args):
     """
 
     # create hdf5 
-    hdf5_fn = h5py.File(os.path.join(args.output_dir, "data.hdf5"), "a")
+    hdf5_fn = h5py.File(os.path.join(args.output_dir, "data_360.hdf5"), "a")
 
     # get all data directory
     data_dirs = glob(os.path.join(args.input_dir, "*/"))
@@ -59,7 +59,8 @@ def parse_data(path):
     x = imageio.imread(x_file)
 
     # TODO only using majority shape
-    if x.shape != (256, 256, 4):
+    if x.shape != (360, 360, 4):
+        print(x.shape)
         return None, None, None
     masks = np.array([imageio.imread(y) for y in y_files])
     y = np.zeros_like(masks[0])
