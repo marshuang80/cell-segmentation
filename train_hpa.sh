@@ -1,9 +1,9 @@
 python train.py --num_kernel 8 \
                 --kernel_size 3\
-		        --lr 1e-3 \
-		        --epoch 2 \
-			    --train_data PATH_TO_TRAIN_DATA \
-			    --save_dir ./ \
+                --lr 1e-3 \
+                --epoch 2 \
+                --train_data PATH_TO_TRAIN_DATA \ 
+                --save_dir ./ \
                 --dataset HPA \
                 --device cuda\
                 --optimizer adam\
