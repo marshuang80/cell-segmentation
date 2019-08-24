@@ -43,8 +43,8 @@ As expected, these segmentation models can be used for simple segmentation tasks
 
 | Dataset | Original | Segmentation |
 | --- | --- | --- |
-| Neuro | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_original.png" width="40%" align="center"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_segmentation.png" width="40%"> align="center"|
-| Nuclei | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_original.png" width="40%" align="center"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_segmentation.png" width="40%" align="center"> | 
+| Neuro | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_original.png" width="40%"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/neuro_segmentation.png" width="40%"> |
+| Nuclei | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_original.png" width="40%"> | <img src="https://github.com/marshuang80/CellSegmentation/blob/master/figs/nuclei_segmentation.png" width="40%"> | 
 
 The above simple nuclei segmentation can be trained by running *train.py* and set the dataset argument to **nuclei** or **neuron**.
 
