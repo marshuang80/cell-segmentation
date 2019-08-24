@@ -32,3 +32,17 @@ This repository included several simple segmentation networks, including:
 - [Dialated Convolution](https://arxiv.org/abs/1511.07122)
 
 
+## Training Modes
+The same segmentation models can be trained for a wide range of tasks. These different training procedures are done by altering the output target for the training data, and implemented in the *./dataset* folder. 
+
+### Simple Neuclei Segmentation
+
+As expected, these segmentation models can be used for simple segmentation tasks such as segmenting out the Cell's nuclei:
+
+| Dataset | Original | Segmentation |
+| --- | --- | --- |
+| Neuro |![](figs/neuro_original.png) | ![](figs/neuro_segmentation.png) |
+| Nuclei |![](figs/nuclei_original.png) | ![](figs/nuclei_segmentation.png) |
+
+
+
