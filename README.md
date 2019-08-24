@@ -43,8 +43,8 @@ As expected, these segmentation models can be used for simple segmentation tasks
 
 | Dataset | Original | Segmentation |
 | --- | --- | --- |
-| Neuro |![](figs/neuro_original.png) | ![](figs/neuro_segmentation.png) |
-| Nuclei |![](figs/nuclei_original.png) | ![](figs/nuclei_segmentation.png) |
+| Neuro |![](figs/neuro_original.png | width=100) | ![](figs/neuro_segmentation.png | width=100) |
+| Nuclei |![](figs/nuclei_original.png | width=100) | ![](figs/nuclei_segmentation.png | width=100) |
 
 The above simple nuclei segmentation can be trained by running *train.py* and set the dataset argument to **nuclei** or **neuron**.
 
