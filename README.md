@@ -45,4 +45,11 @@ As expected, these segmentation models can be used for simple segmentation tasks
 | Nuclei |![](figs/nuclei_original.png) | ![](figs/nuclei_segmentation.png) |
 
 
+### Cell Components Segmentation
+
+The segmentation models cal also be used to simultaniously decompose microscopy images of cells into it's cellular structures, such as Nucleus, Microtubules and ER: 
+
+| Original | ER | Nucleus | Microtubules | 
+| --- | --- | --- | --- |
+| ![](figs/hpa_original.png) | ![](er_segmentation.png) | ![](nucleus_segmentation.png) | ![](microtubules_segmentation.png) |
 
