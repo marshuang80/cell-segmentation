@@ -51,5 +51,5 @@ The segmentation models cal also be used to simultaniously decompose microscopy 
 
 | Original | ER | Nucleus | Microtubules | 
 | --- | --- | --- | --- |
-| ![](figs/hpa_original.png) | ![](er_segmentation.png) | ![](nucleus_segmentation.png) | ![](microtubules_segmentation.png) |
+| ![](figs/hpa_original.png) | ![](figs/er_segmentation.png) | ![](figs/nucleus_segmentation.png) | ![](figs/microtubules_segmentation.png) |
 
