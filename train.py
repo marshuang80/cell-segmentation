@@ -9,7 +9,7 @@ import metrics
 from skimage import io
 from skimage import transform
 from model import FusionNet, DilationCNN, UNet
-from dataset import NucleiDataset, HPADataset, get_augmenter
+from dataset import NucleiDataset, HPADataset, NeuroDataset, HPASingleDataset,get_augmenter
 from torch.utils.data import DataLoader
 from loss import dice_loss
 import imageio
@@ -25,20 +25,20 @@ def main(args):
     # tensorboard
     logger_tb = logger.Logger(log_dir=args.experiment_name)
 
-    #augmenter = get_augmenter(args)
-
-    # train dataloader and val dataset
-    
+    # get dataset
     if args.dataset == "nuclei":
         train_dataset = NucleiDataset(args.train_data, 'train', args.transform, args.target_channels)
-    else:
+    elif args.dataset == "hpa":
         train_dataset = HPADataset(args.train_data, 'train', args.transform, args.max_mean, args.target_channels)
+    elif args.dataset == "hpa_single":
+        train_dataset = HPASingleDataset(args.train_data, 'train', args.transform)
+    else:
+        train_dataset = NeuroDataset(args.train_data, 'train', args.transform)
 
-
+    # create dataloader
     train_params = {'batch_size': args.batch_size,
                     'shuffle': False,
                     'num_workers': args.num_workers}
-
     train_dataloader = DataLoader(train_dataset, **train_params)
 
     # device
@@ -117,7 +117,7 @@ def main(args):
                 logger_tb.update_value('train iou', avg_iou, count)
 
                 # display segmentation on tensorboard 
-                if count % 50 == 0:
+                if i == 0:
                     original = x_train[0].squeeze()
                     truth = y_train[0].squeeze()
                     seg = pred[0].cpu().squeeze().detach().numpy()
@@ -127,8 +127,8 @@ def main(args):
                     logger_tb.update_image("segmentation", seg, count)
                     logger_tb.update_image("original", original, count)
 
-                count += 1
-                progress_bar.update(len(x))
+                    count += 1
+                    progress_bar.update(len(x))
 
     # save model 
     ckpt_dict = {'model_name': model.__class__.__name__, 
