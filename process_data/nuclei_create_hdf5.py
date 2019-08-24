@@ -59,9 +59,9 @@ def parse_data(path):
     x = imageio.imread(x_file)
 
     # TODO only using majority shape
-    if x.shape != (360, 360, 4):
-        print(x.shape)
+    if x.shape != (256, 256, 4):
         return None, None, None
+
     masks = np.array([imageio.imread(y) for y in y_files])
     y = np.zeros_like(masks[0])
     for y_raw in masks:
