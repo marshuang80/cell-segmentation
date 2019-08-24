@@ -44,12 +44,27 @@ As expected, these segmentation models can be used for simple segmentation tasks
 | Neuro |![](figs/neuro_original.png) | ![](figs/neuro_segmentation.png) |
 | Nuclei |![](figs/nuclei_original.png) | ![](figs/nuclei_segmentation.png) |
 
+The above simple nuclei segmentation can be trained by running *train.py* and set the dataset argument to **nuclei** or **neuron**.
+
 
 ### Cell Components Segmentation
 
-The segmentation models cal also be used to simultaniously decompose microscopy images of cells into it's cellular structures, such as Nucleus, Microtubules and ER: 
+The segmentation models can also be used to simultaniously decompose microscopy images of cells into it's cellular structures, such as Nucleus, Microtubules and ER: 
 
 | Original | ER | Nucleus | Microtubules | 
 | --- | --- | --- | --- |
 | ![](figs/hpa_original.png) | ![](figs/er_segmentation.png) | ![](figs/nucleus_segmentation.png) | ![](figs/microtubules_segmentation.png) |
+
+The above cell structure decomposition model can be trained by running *train.py* and set the dataset argument to **hpa** as well as the desired target channels (e.g **0,2,3**). 
+
+
+### Image Restoration
+
+The segmentation models can also be used to restore missing pixels in an image:
+
+| Original | Restoration | Ground Truth | 
+| --- | --- | --- |
+| ![](figs/original_restore.png) | ![](figs/results_restore.png) | ![](figs/truth_restore.png) |
+
+The above missing pixels restoration model can be trained by running *train.py* and set the dataset argument to **hpa_single**. 
 
