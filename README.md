@@ -27,7 +27,7 @@ Example script can be found at *./process_data/create_hdf5.sh*
 
 
 ## Segmentation Models:
-This repository included several simple segmentation networks, including:
+This repository includes several simple segmentation networks, including:
 
 - [UNet](https://arxiv.org/abs/1505.04597)
 - [FusionNet](https://arxiv.org/pdf/1612.05360.pdf)
@@ -35,7 +35,7 @@ This repository included several simple segmentation networks, including:
 
 
 ## Training Modes
-The same segmentation models can be trained for a wide range of tasks. These different training procedures are done by altering the output target for the training data, and implemented in the *./dataset* folder. 
+The same segmentation models can be trained for a wide range of tasks. These different training procedures are done by altering the output target for the training data, as implemented in the *./dataset* folder. 
 
 ### Simple Neuclei Segmentation
 
