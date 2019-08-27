@@ -79,3 +79,8 @@ To train any models, run the *train.py* with the desired configurations. Example
 ### Tensorboard 
 
 You can visualize the trianing loss and IoU during training, as well as the segmentation images, using Tensorboard. While the model is training, run ```tensorboard --logdir=logs --port=1234``` and your Tensorboard can be opened in your browser with the link **http://localhost:1234**
+
+If you are training your model on a remote server, you will need to forward the port on your local machine using:
+```ssh -N -f -L localhost:1234:localhost:5678 <YOUR_SSH_LOGIN>```
+
+Now you can view tensorboard on your local browser with the link **http://localhost:5678**
